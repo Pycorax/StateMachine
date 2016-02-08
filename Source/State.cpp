@@ -1,29 +1,28 @@
-#include "FSMState.h"
+#include "State.h"
 
 #include <Windows.h>
 
-const float FSMState::S_MAX_STATE_TIME = 1.f;
+const float StateMachine::State::S_MAX_STATE_TIME = 1.f;
 
-FSMState::FSMState()
+StateMachine::State::State()
 	: m_FSMOwner(nullptr)
 	, m_stateParent(nullptr)
 	, m_currentState(nullptr)
 	, m_previousState(nullptr)
 	, m_stateName("Unnamed")
-	, m_stateTimer(0.f)
 {
 }
 
 
-FSMState::~FSMState()
+StateMachine::State::~State()
 {
 }
 
-// Initialization Function for a NPC Base State [Parent is a NPC]
-void FSMState::Init(NPC * FSMOwner)
+// Initialization Function for a FiniteStateMachine Base State [Parent is a FiniteStateMachine]
+void StateMachine::State::Init(FiniteStateMachine * SMOwner)
 {
 	// Set the parent
-	m_FSMOwner = FSMOwner;
+	m_FSMOwner = SMOwner;
 
 	// If switched to this state from a previous state, clear the previous state
 	if (m_FSMOwner->m_previousState)
@@ -35,12 +34,12 @@ void FSMState::Init(NPC * FSMOwner)
 }
 
 // Initialization Function for a Child State [Parent is a State]
-void FSMState::Init(FSMState * stateOwner)
+void StateMachine::State::Init(State * stateOwner)
 {
 	// Set the parent
 	m_stateParent = stateOwner;
 
-	// Connect this state to the original NPC owner so that we can interface with it.
+	// Connect this state to the original FiniteStateMachine owner so that we can interface with it.
 	m_FSMOwner = m_stateParent->m_FSMOwner;
 
 	// If switched to this nested state from a previous nested state, clear the previous nested state
@@ -52,7 +51,7 @@ void FSMState::Init(FSMState * stateOwner)
 	}
 }
 
-void FSMState::Update(double dt)
+void StateMachine::State::Update(double dt)
 {
 	// If this is a parent state
 	if (m_currentState)
@@ -62,7 +61,7 @@ void FSMState::Update(double dt)
 	}
 }
 
-void FSMState::Exit(void)
+void StateMachine::State::Exit(void)
 {
 	// If this state is a parent state
 	if (m_currentState)
@@ -86,7 +85,7 @@ void FSMState::Exit(void)
 	m_stateParent = nullptr;
 }
 
-string FSMState::GetStateName(void)
+string StateMachine::State::GetStateName(void)
 {
 	if (m_currentState)
 	{
@@ -96,12 +95,12 @@ string FSMState::GetStateName(void)
 	return m_stateName;
 }
 
-string FSMState::GetThisStateName(void)
+string StateMachine::State::GetThisStateName(void)
 {
 	return m_stateName;
 }
 
-string FSMState::GetChildStateName(void)
+string StateMachine::State::GetChildStateName(void)
 {
 	if (m_currentState)
 	{
@@ -111,7 +110,7 @@ string FSMState::GetChildStateName(void)
 	return "";
 }
 
-void FSMState::changeState(FSMState * state)
+void StateMachine::State::changeState(State * state)
 {
 	if (m_stateParent)		// Is a Child State
 	{
@@ -119,21 +118,20 @@ void FSMState::changeState(FSMState * state)
 		m_stateParent->m_currentState = state;
 		m_stateParent->m_currentState->Init(m_stateParent);
 	}
-	else					// Is a NPC Base State
+	else					// Is a FiniteStateMachine Base State
 	{
 		m_FSMOwner->m_previousState = this;
 		m_FSMOwner->m_currentState = state;
 		m_FSMOwner->m_currentState->Init(m_FSMOwner);
 	}
-	//Sleep(100);
 }
 
-bool FSMState::isNestedState(void) const
+bool StateMachine::State::isNestedState(void) const
 {
 	return m_stateParent != nullptr;
 }
 
-void FSMState::setCurrentState(FSMState * startState)
+void StateMachine::State::setCurrentState(State * startState)
 {
 	if (m_currentState)
 	{
@@ -144,6 +142,4 @@ void FSMState::setCurrentState(FSMState * startState)
 
 	m_currentState = startState;
 	m_currentState->Init(this);
-
-	//Sleep(100);
 }

@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\FSMState.cpp" />
-    <ClCompile Include="Source\NPC.cpp" />
+    <ClCompile Include="Source\State.cpp" />
+    <ClCompile Include="Source\FiniteStateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\FSMState.h" />
-    <ClInclude Include="Source\NPC.h" />
+    <ClInclude Include="Source\State.h" />
+    <ClInclude Include="Source\FiniteStateMachine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{64D486CE-D087-4A25-B5D2-38B4E2BB3755}</ProjectGuid>

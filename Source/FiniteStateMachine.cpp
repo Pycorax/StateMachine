@@ -1,19 +1,19 @@
-#include "NPC.h"
+#include "FiniteStateMachine.h"
 
-#include "FSMState.h"
+#include "State.h"
 
-NPC::NPC()
+StateMachine::FiniteStateMachine::FiniteStateMachine()
 	: m_currentState(nullptr)
 	, m_previousState(nullptr)
 {
 }
 
 
-NPC::~NPC()
+StateMachine::FiniteStateMachine::~FiniteStateMachine()
 {
 }
 
-void NPC::Update(double dt)
+void StateMachine::FiniteStateMachine::Update(double dt)
 {
 	if (m_currentState)
 	{
@@ -21,7 +21,7 @@ void NPC::Update(double dt)
 	}
 }
 
-void NPC::Exit(void)
+void StateMachine::FiniteStateMachine::Exit(void)
 {
 	if (m_currentState)
 	{
@@ -38,22 +38,22 @@ void NPC::Exit(void)
 	}
 }
 
-string NPC::GetStateName(void)
+string StateMachine::FiniteStateMachine::GetStateName(void)
 {
 	return m_currentState->GetStateName();
 }
 
-string NPC::GetThisStateName(void)
+string StateMachine::FiniteStateMachine::GetThisStateName(void)
 {
 	return m_currentState->GetThisStateName();
 }
 
-string NPC::GetChildStateName(void)
+string StateMachine::FiniteStateMachine::GetChildStateName(void)
 {
 	return m_currentState->GetChildStateName();
 }
 
-void NPC::setCurrentState(FSMState * startState)
+void StateMachine::FiniteStateMachine::setCurrentState(State * startState)
 {
 	if (m_currentState)
 	{

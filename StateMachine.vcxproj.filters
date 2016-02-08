@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\FSMState.cpp">
+    <ClCompile Include="Source\FiniteStateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\NPC.cpp">
+    <ClCompile Include="Source\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\FSMState.h">
+    <ClInclude Include="Source\FiniteStateMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\NPC.h">
+    <ClInclude Include="Source\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
