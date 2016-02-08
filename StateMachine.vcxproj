@@ -11,10 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\ConcurrentStateMachine.cpp" />
     <ClCompile Include="Source\State.cpp" />
     <ClCompile Include="Source\FiniteStateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ConcurrentStateMachine.h" />
     <ClInclude Include="Source\State.h" />
     <ClInclude Include="Source\FiniteStateMachine.h" />
   </ItemGroup>

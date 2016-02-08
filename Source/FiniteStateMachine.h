@@ -36,6 +36,24 @@ using std::string;
 /******************************************************************************/
 namespace StateMachine
 {
+	/******************************************************************************/
+	/*!
+			Class FiniteStateMachine:
+	\brief	Finite State Machine interface class meant to provide Finite
+			State Machine functionality to inherited classes.
+
+			To use this class, simply inherit from it and define FSMStates for
+			it. Said FSMStates should be declared as friend classes of the
+			NPC.
+
+			To set the starting state, use setCurrentState() to specify the
+			state to use. setCurrentState() will automatically call the Init()
+			of the state.
+
+			m_currentState and m_previousState are hidden so as to abstract
+			the data away from the user.
+	*/
+	/******************************************************************************/
 	class FiniteStateMachine
 	{
 		/*
@@ -56,6 +74,8 @@ namespace StateMachine
 
 		virtual void Update(double dt);
 		virtual void Exit(void);
+
+		// Getters
 		virtual string GetStateName(void);
 		virtual string GetThisStateName(void);
 		virtual string GetChildStateName(void);
