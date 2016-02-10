@@ -73,7 +73,7 @@ void StateMachine::FiniteStateMachine::setParent(ConcurrentStateMachine * csm)
 	m_parent = csm;
 }
 
-StateMachine::ConcurrentStateMachine * StateMachine::FiniteStateMachine::getParent(void) const
+StateMachine::ConcurrentStateMachine * StateMachine::FiniteStateMachine::GetParent(void) const
 {
 	return m_parent;
 }
