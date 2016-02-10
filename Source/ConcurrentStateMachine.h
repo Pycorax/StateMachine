@@ -51,7 +51,10 @@ namespace StateMachine
 			class FiniteStateMachineInstance : public FiniteStateMachine
 			{
 				public:
-					FiniteStateMachineInstance() : FiniteStateMachine() {}
+					FiniteStateMachineInstance(ConcurrentStateMachine* parent) : FiniteStateMachine() 
+					{
+						setParent(parent);
+					}
 					~FiniteStateMachineInstance() {}
 
 					void setCurrentState(State* state)

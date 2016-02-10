@@ -1,10 +1,12 @@
 #include "FiniteStateMachine.h"
 
 #include "State.h"
+#include "ConcurrentStateMachine.h"
 
 StateMachine::FiniteStateMachine::FiniteStateMachine()
 	: m_currentState(nullptr)
 	, m_previousState(nullptr)
+	, m_parent(nullptr)
 {
 }
 
@@ -64,4 +66,14 @@ void StateMachine::FiniteStateMachine::setCurrentState(State * startState)
 
 	m_currentState = startState;
 	m_currentState->Init(this);
+}
+
+void StateMachine::FiniteStateMachine::setParent(ConcurrentStateMachine * csm)
+{
+	m_parent = csm;
+}
+
+StateMachine::ConcurrentStateMachine * StateMachine::FiniteStateMachine::getParent(void) const
+{
+	return m_parent;
 }

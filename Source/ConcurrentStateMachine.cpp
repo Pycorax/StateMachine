@@ -19,7 +19,7 @@ void StateMachine::ConcurrentStateMachine::Init(const unsigned numStateMachines)
 {
 	for (size_t i = 0; i < numStateMachines; ++i)
 	{
-		m_stateMachines.push_back(FiniteStateMachineInstance());
+		m_stateMachines.push_back(FiniteStateMachineInstance(this));
 	}
 }
 

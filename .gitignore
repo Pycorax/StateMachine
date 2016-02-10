@@ -2,3 +2,4 @@
 *.sdf
 Debug/
 *.suo
+*.opensdf

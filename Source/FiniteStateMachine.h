@@ -16,26 +16,11 @@ State Machine.
 // Using Directives
 using std::string;
 
-/******************************************************************************/
-/*!
-		Class FiniteStateMachine:
-\brief	Finite State Machine interface class meant to provide Finite 
-		State Machine functionality to inherited classes.
-
-		To use this class, simply inherit from it and define FSMStates for
-		it. Said FSMStates should be declared as friend classes of the
-		NPC.
-
-		To set the starting state, use setCurrentState() to specify the
-		state to use. setCurrentState() will automatically call the Init()
-		of the state.
-
-		m_currentState and m_previousState are hidden so as to abstract
-		the data away from the user.
-*/
-/******************************************************************************/
 namespace StateMachine
 {
+	// Forward Declarations
+	class ConcurrentStateMachine;
+
 	/******************************************************************************/
 	/*!
 			Class FiniteStateMachine:
@@ -67,6 +52,8 @@ namespace StateMachine
 		State* m_currentState;
 		// Stores a state that is set to deletion
 		State* m_previousState;
+		// Stores a parent ConcurrentStateMachine*
+		ConcurrentStateMachine* m_parent;
 
 	public:
 		FiniteStateMachine();
@@ -83,6 +70,11 @@ namespace StateMachine
 	protected:
 		// Use this function to set the current state. Automatically calls the state's Init() and destroys the previous state.
 		void setCurrentState(State* startState);
+		// Functions exposed for FiniteStateMachineInstance() for use with ConcurrentStateMachine
+		void setParent(ConcurrentStateMachine* csm);
+
+	public:
+		ConcurrentStateMachine* GetParent(void) const;
 	};
 }
 #endif
